@@ -1,0 +1,16 @@
+import urllib
+import json
+from pprint import pprint
+
+ServiceKey = "otvrFJef0qOoHwsB2HuTVA=="
+url = "http://www.cdc.go.kr/npt/biz/npp/rest/getLwcrContent.do?key=otvrFJef0qOoHwsB2HuTVA%3D%3D&icdgrpCd=04&icdCd=ND0001&isTxt=1&updtDt=2018-01-01"
+request = urllib.request.Request(url)
+response = urllib.request.urlopen(request)
+rescode = response.getcode()
+if(rescode==200):
+    response_body = response.read()
+    print(response_body.decode('utf-8'))
+    dict = json.loads(response_body.decode('utf-8'))
+    pprint(dict)
+else:
+    print("Error Code:" + rescode)
